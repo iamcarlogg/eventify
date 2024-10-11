@@ -124,7 +124,7 @@
   /* 2 */
   border-style: solid;
   /* 2 */
-  border-color: #e5e7eb;
+  border-color: currentColor;
   /* 2 */
 }
 
@@ -554,12 +554,15 @@ video {
   display: none;
 }
 
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+.min-h-screen {
+  min-height: 100vh;
 }
 
-.text-green-100 {
-  --tw-text-opacity: 1;
-  color: rgb(220 252 231 / var(--tw-text-opacity));
+.w-screen {
+  width: 100vw;
+}
+
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(79 139 111 / var(--tw-bg-opacity));
 }
