@@ -9,7 +9,7 @@
 
 </head>
 <body class="bg-[url('/src/images/folk-pattern.png')] bg-opacity-50 bg-repeat min-h-screen flex flex-col">
-    <!-- Header -->
+   
  <!-- Header -->
  <div class="w-full bg-primary p-2 flex justify-between items-center">
     <div class="relative">
@@ -21,20 +21,25 @@
                 <img class="" src="./images/gato_bar.png" alt="">
           
             </div>
-            <a href="#" class="block px-4 py-2 text-white text-xl border-t border-white rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Home</a>
-            <a href="#" class="block px-4 py-2 text-white text-xl border-t border-white rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Eventos</a>
-            <a href="#" class="block px-4 py-2 text-white text-xl  border-t border-white rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Gestion de Eventos</a>
-            <a href="#" class="block px-4 py-2 text-white text-xl  border-t border-white rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Gestion de Usuarios</a>
-            <a href="#" class="block px-4 py-2 text-white text-xl  border-t border-white rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Estadisticas</a>
-            <a href="#" class="block px-4 py-2 text-white text-xl  border-t border-white rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Configuracion</a>
+            <a href="#" class="block px-4 py-2 text-white text-xl rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Home</a>
+            <a href="#" class="block px-4 py-2 text-white text-xl rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Eventos</a>
+            <a href="#" class="block px-4 py-2 text-white text-xl  rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Gestion de Eventos</a>
+            <a href="#" class="block px-4 py-2 text-white text-xl  rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Gestion de Usuarios</a>
+            <a href="#" class="block px-4 py-2 text-white text-xl  rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Estadisticas</a>
+            <a href="#" class="block px-4 py-2 text-white text-xl  rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-">Configuracion</a>
 
 
 
         </div>
     </div>
-    <h1 class="font-black text-2xl sm: md:text-3xl lg:text-4xl text-panel_color"><a href="">EVENTIFY</a></h1>
+    <div >
+        <button class="rounded-full bg-buttons p-2 "><img class="object-scale-down w-5 h-5 " src="./images/Gato_icon.png" alt=""></button>
+        <button class="material-icons text-white text-xl p-2 m-auto hover:scale-105 transition-transform duration-300"><span>logout</span></button>
+    </div>
+
 
 </div>
+<!-- AQUI TERMINA EL HEADER Y TODO SU CONTENIDO -->
 
     <!-- Main Content -->
     <div class="flex-grow flex justify-center items-center bg-primary bg-opacity-50">
@@ -57,6 +62,7 @@
             </div>
         </div>
     </div>
+    <!-- AQUI EMPIEZAN LOS SCRIPTS PARA QUE FUNCIONEN LA  NAVBAR Y EL MENU -->
     <script>
         document.getElementById('menu-button').addEventListener('click', function() {
             var menu = document.getElementById('menu');
