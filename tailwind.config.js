@@ -12,6 +12,7 @@ module.exports = {
       buttons: '#9DDAC9',
       panel_color:'#F2F4D4',
       white:'#FFFFFF',
+      red: "#DB6948",
     },
   },
   plugins: [],
