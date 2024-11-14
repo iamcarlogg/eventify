@@ -1,0 +1,5 @@
+exit
+db.users.find().pretty();
+show collections;
+use eventify;
+show dbs;
