@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVENTIFY</title>
+    <link rel="stylesheet" href="/src/output.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  </head>
+  <body
+    class="bg-[url('/src/images/folk-pattern.png')] bg-opacity-50 bg-repeat min-h-screen flex flex-col"
+  >
+    <!-- Header -->
+    <div class="w-full bg-primary p-2 flex justify-between items-center">
+      <div class="relative">
+        <button id="menu-button" class="flex ml-auto">
+          <span class="material-icons text-white">menu</span>
+        </button>
+        <div
+          id="menu"
+          class="fixed inset-0 right-0 mt-2 w-48 h-full bg-primary rounded-lg shadow-lg text-center hidden transition-transform duration-300"
+        >
+          <div
+            class="flex flex-col items-center gap-2 justify-center text-center py-2"
+          >
+            <img class="" src="/src/images/gato_bar.png" alt="" />
+          </div>
+          <a
+            href="#"
+            class="block px-4 py-2 text-white text-xl rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-"
+            >Home</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-2 text-white text-xl rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-"
+            >Eventos</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-2 text-white text-xl rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-"
+            >Gestion de Eventos</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-2 text-white text-xl rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-"
+            >Gestion de Usuarios</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-2 text-white text-xl rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-"
+            >Estadisticas</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-2 text-white text-xl rounded-md hover:bg-secondary hover:rounded-md transition-transform duration-"
+            >Configuracion</a
+          >
+        </div>
+      </div>
+      <div>
+        <button class="rounded-full bg-buttons p-2">
+          <img
+            class="object-scale-down w-5 h-5"
+            src="./images/Gato_icon.png"
+            alt=""
+          />
+        </button>
+        <button
+          class="material-icons text-white text-xl p-2 m-auto hover:scale-105 transition-transform duration-300"
+        >
+          <span>logout</span>
+        </button>
+      </div>
+    </div>
+    <!-- AQUI TERMINA EL HEADER Y TODO SU CONTENIDO -->
+
+    <!-- Main Content -->
+    <div
+      class="flex-grow flex justify-center items-center bg-primary bg-opacity-50 gap-5"
+    >
+      <div
+        class="w-4/5 rounded-xl p-3 flex flex-row items-center justify-center text-center gap-2"
+      >
+        <div
+          class="w-1/5 bg-secondary rounded-xl p-6 flex flex-col items-center justify-center text-center"
+        >
+          <!-- Contenido del primer div -->
+          <ul class="text-white flex flex-col gap-5 font-bold ">
+            <il><a href="./dashboard_supadmin.html" class=" hover:underline hover:text-panel_color transition-all duration-300">Panel de Eventos</a></il>
+            <il><a href="./dashboard_supadmin_reports.html" class=" hover:underline hover:text-panel_color transition-all duration-300">Ver Reportes</a></il>
+            <il><a href="./dashboard_supadmin_users.html" class=" hover:underline hover:text-panel_color transition-all duration-300">Gestionar Usuarios</a></il>
+          </ul>
+        </div>
+        <div
+          id="reports_paginator"
+          class="w-4/5 h-auto bg-panel_color rounded-xl p-6 flex flex-col items-center text-center"
+        >
+          <!-- Título visible -->
+          <h1 class="text-2xl font-black text-secondary uppercase my-3">
+            Gestion Usuarios 
+          </h1>
+
+          <!-- Contenedor de eventos renderizados en fila -->
+          <div
+            id="reports_container"
+            class="flex flex-row justify-center gap-6"
+          >
+            <!-- El contenido del template se renderizará aquí -->
+            <template id="reports_template" class="">
+              <div
+                class="flex flex-col ites-center justify-center text-center bg-primary rounded-xl p-5 w-1/4"
+              >
+                <h3 id="numero_reporte" class="text-white text-2xl"></h3>
+
+                <p id="descripcion_reporte" class="text-white font-light p-2"></p>
+                <p id="numero_publicacion" class="text-white font-light p-2"></p>
+                <div class="flex flex-row justify-center gap-2">
+                  <button
+                    id="reporte_info"
+                    class="bg-buttons rounded-md w-20 px-4 py-1 text-white font-bold"
+                  >
+                    <span class="material-icons">info</span>
+                  </button>
+                  <button
+                    id="report_delete"
+                    class="bg-red text-white w-20 rounded-md px-3 py-1 font-bold"
+                  >
+                    <span class="material-icons">delete</span>
+                  </button>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          <!-- Paginador visible y centrado -->
+          <div id="paginator" class="flex gap-2 mt-4 justify-center">
+            <button id="back"><span class="material-icons text-secondary">arrow_back</span></button>
+            <span id="page">page</span>
+            <button id="next"><span class="material-icons text-secondary">arrow_forward</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- AQUI EMPIEZAN LOS SCRIPTS PARA QUE FUNCIONEN LA  NAVBAR Y EL MENU -->
+    <script>
+      //Aqui empieza el paginartor
+      const eventListDOM = document.querySelector("#reports_container");
+      const backDOM = document.querySelector("#back");
+      const pageDOM = document.querySelector("#page");
+      const nextDOM = document.querySelector("#next");
+      const plantillaEvent =
+        document.querySelector("#reports_template").content.firstElementChild;
+      const elementosPorPagina = 3;
+      let paginaActual = 1;
+      const baseDeDatos = [
+  {
+    "numero_reporte": 1,
+    "descripcion_reporte": "Contenido inapropiado detectado en la publicación.",
+    "numero_publicacion": 101
+  },
+  {
+    "numero_reporte": 2,
+    "descripcion_reporte": "Publicación contiene spam o enlaces sospechosos.",
+    "numero_publicacion": 102
+  },
+  {
+    "numero_reporte": 3,
+    "descripcion_reporte": "Lenguaje ofensivo detectado en los comentarios.",
+    "numero_publicacion": 103
+  },
+  {
+    "numero_reporte": 4,
+    "descripcion_reporte": "Información falsa o engañosa en la publicación.",
+    "numero_publicacion": 104
+  },
+  {
+    "numero_reporte": 5,
+    "descripcion_reporte": "Violación de derechos de autor en el contenido publicado.",
+    "numero_publicacion": 105
+  },
+  {
+    "numero_reporte": 6,
+    "descripcion_reporte": "Incitación al odio o contenido discriminatorio.",
+    "numero_publicacion": 106
+  }
+];
+      function nextPage() {
+        paginaActual++;
+        render();
+      }
+      function prevPage() {
+        paginaActual--;
+        render();
+      }
+      function obtainData(page = 1) {
+        const inicio = (paginaActual - 1) * elementosPorPagina;
+        const final = inicio + elementosPorPagina;
+        return baseDeDatos.slice(inicio, final);
+      }
+      function obtenerPaginasTotales() {
+        return Math.ceil(baseDeDatos.length / elementosPorPagina);
+      }
+      function gestButton() {
+        if (paginaActual === 1) {
+          backDOM.setAttribute("disabled", true);
+        } else {
+          backDOM.removeAttribute("disabled");
+        }
+        if (paginaActual == obtenerPaginasTotales()) {
+          nextDOM.setAttribute("disabled", true);
+        } else {
+          nextDOM.removeAttribute("disabled");
+        }
+      }
+      function render() {
+        eventListDOM.innerHTML = "";
+        const dataSlice = obtainData(paginaActual);
+        gestButton();
+        pageDOM.textContent = `${paginaActual} / ${obtenerPaginasTotales()}`;
+        dataSlice.forEach(function (data) {
+          const myEvent = plantillaEvent.cloneNode(true);
+          const myTitle = myEvent.querySelector("#numero_reporte");
+          myTitle.textContent = data.numero_reporte;
+          const myDesc = myEvent.querySelector("#descripcion_reporte");
+          myDesc.textContent = data.descripcion_reporte;
+          const myPub = myEvent.querySelector("#numero_publicacion");
+          myPub.textContent = data.numero_publicacion;
+          eventListDOM.appendChild(myEvent);
+        });
+      }
+      backDOM.addEventListener("click", prevPage);
+      nextDOM.addEventListener("click", nextPage);
+      render();
+      //aqui termina el paginator
+
+      document
+        .getElementById("menu-button")
+        .addEventListener("click", function () {
+          var menu = document.getElementById("menu");
+          if (menu.classList.contains("hidden")) {
+            menu.classList.remove("hidden");
+          } else {
+            menu.classList.add("hidden");
+          }
+        });
+      window.addEventListener("click", function (event) {
+        var menu = document.getElementById("menu");
+        var menuButton = document.getElementById("menu-button");
+        if (
+          !menu.contains(event.target) &&
+          !menuButton.contains(event.target)
+        ) {
+          menu.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
