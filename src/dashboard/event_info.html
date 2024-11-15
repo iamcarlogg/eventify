@@ -62,22 +62,7 @@
         </div>
     </div>
     <!-- AQUI EMPIEZAN LOS SCRIPTS PARA QUE FUNCIONEN LA  NAVBAR Y EL MENU -->
-    <script>
-        document.getElementById('menu-button').addEventListener('click', function() {
-            var menu = document.getElementById('menu');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
-            }
-        });
-        window.addEventListener('click', function(event) {
-            var menu = document.getElementById('menu');
-            var menuButton = document.getElementById('menu-button');
-            if (!menu.contains(event.target) && !menuButton.contains(event.target)) {
-                menu.classList.add('hidden');
-            }
-        });
-    </script>
+    <script src="./handlemenu.js"></script>
+   
 </body>
 </html>
