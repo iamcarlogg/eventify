@@ -10,7 +10,23 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+      /* Define un tamaño fijo para los elementos del evento */
+      .event-item {
+          width: 30%; /* Ajusta el ancho según sea necesario */
+          min-width: 200px; /* Ajusta el ancho mínimo según sea necesario */
+          height: 200px; /* Ajusta la altura según sea necesario */
+          margin: 10px; /* Ajusta el margen según sea necesario */
+      }
 
+      /* Asegura que el contenedor tenga un tamaño adecuado */
+      #event-container {
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+          min-height: 220px; /* Ajusta la altura mínima según sea necesario */
+      }
+  </style>
   </head>
   <body
     class="bg-[url('/src/images/folk-pattern.png')] bg-opacity-50 bg-repeat min-h-screen flex flex-col"
@@ -113,11 +129,12 @@
             <!-- El contenido del template se renderizará aquí -->
             <template id="event-template" class="">
               <div
-                class="flex flex-col ites-center justify-center text-center bg-primary rounded-xl p-5 w-1/4"
+                class="flex flex-col items-center justify-center text-center bg-primary rounded-xl p-5 w-1/4"
               >
                 <h3 id="event_title" class="text-white text-2xl"></h3>
 
                 <p id="event_desc" class="text-white font-light p-2"></p>
+                <p id="fecha" class="text-white font-extralight p-2"></p>
                 <div class="flex flex-row justify-center gap-2">
                   <button
                     id="event-info"
@@ -157,49 +174,71 @@
       const elementosPorPagina = 3;
       let paginaActual = 1;
       const baseDeDatos = [
-        {
-          event_responsible: 1,
-          id: 1,
-          event_title: "Titulo Evento 1 ",
-          event_desc:
-            "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-        },
-        {
-          event_responsible: 1,
-          id: 2,
-          event_title: "Titulo Evento 2 ",
-          event_desc:
-            "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-        },
-        {
-          event_responsible: 1,
-          id: 3,
-          event_title: "Titulo Evento 3",
-          event_desc:
-            "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-        },
-        {
-          event_responsible: 1,
-          id: 4,
-          event_title: "Titulo Evento 4",
-          event_desc:
-            "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-        },
-        {
-          event_responsible: 1,
-          id: 5,
-          event_title: "Titulo Evento 5",
-          event_desc:
-            "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-        },
-        {
-          event_responsible: 1,
-          id: 6,
-          event_title: "Titulo Evento 6",
-          event_desc:
-            "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-        },
-      ];
+  {
+    "name": "FIESTA",
+    "description": "Un evento de música en vivo con bandas locales.",
+    "date": "2024-11-15",
+    "hour": "18:00",
+    "location": "Auditorio Principal",
+    "maxCapacity": 500,
+    "createdBy": "prueba"
+  },
+  {
+    "name": "CONFERENCIA TECNOLÓGICA",
+    "description": "Charla sobre las últimas tendencias en desarrollo de software.",
+    "date": "2024-12-01",
+    "hour": "09:00",
+    "location": "Sala de Conferencias A",
+    "maxCapacity": 200,
+    "createdBy": "admin"
+  },
+  {
+    "name": "FERIA DE EMPRENDEDORES",
+    "description": "Exposición de proyectos innovadores y startups locales.",
+    "date": "2024-11-20",
+    "hour": "10:00",
+    "location": "Plaza Central",
+    "maxCapacity": 1000,
+    "createdBy": "marketing_team"
+  },
+  {
+    "name": "TALLER DE FOTOGRAFÍA",
+    "description": "Aprende técnicas de fotografía con un experto.",
+    "date": "2024-11-18",
+    "hour": "14:00",
+    "location": "Sala de Talleres B",
+    "maxCapacity": 50,
+    "createdBy": "user123"
+  },
+  {
+    "name": "FESTIVAL DE CINE",
+    "description": "Proyección de cortometrajes de directores independientes.",
+    "date": "2024-11-25",
+    "hour": "19:00",
+    "location": "Teatro Municipal",
+    "maxCapacity": 300,
+    "createdBy": "film_club"
+  },
+  {
+    "name": "GALA BENÉFICA",
+    "description": "Cena de recaudación de fondos para organizaciones sin fines de lucro.",
+    "date": "2024-12-05",
+    "hour": "20:00",
+    "location": "Salón de Eventos",
+    "maxCapacity": 150,
+    "createdBy": "charity_org"
+  },
+  {
+    "name": "MARATÓN DE PROGRAMACIÓN",
+    "description": "Competencia de programación para resolver desafíos en equipo.",
+    "date": "2024-11-30",
+    "hour": "08:00",
+    "location": "Laboratorio de Computo",
+    "maxCapacity": 100,
+    "createdBy": "dev_team"
+  }
+]
+;
       function nextPage() {
         paginaActual++;
         render();
@@ -236,9 +275,11 @@
         dataSlice.forEach(function (data) {
           const myEvent = plantillaEvent.cloneNode(true);
           const myTitle = myEvent.querySelector("#event_title");
-          myTitle.textContent = data.event_title;
+          myTitle.textContent = data.name;
           const myDesc = myEvent.querySelector("#event_desc");
-          myDesc.textContent = data.event_desc;
+          const myDate = myEvent.querySelector("#fecha");
+          myDate.textContent = data.date;
+          myDesc.textContent = data.description;
           eventListDOM.appendChild(myEvent);
         });
       }
