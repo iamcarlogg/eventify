@@ -113,11 +113,11 @@
             <!-- El contenido del template se renderizará aquí -->
             <template id="users_template" class="">
               <div
-                class="flex flex-col ites-center justify-center text-center bg-primary rounded-xl p-5 w-1/4"
+                class="flex flex-col ites-center justify-center text-center bg-primary rounded-xl p-6 w-1/4"
               >
                 <h3 id="user_name" class="text-white text-2xl"></h3>
 
-                <p id="user_desc" class="text-white font-light p-2"></p>
+                <p id="user_desc" class="text-white text-lg font-light "></p>
                 <div class="flex flex-row justify-center gap-2">
                   <button
                     id="user-info"
@@ -156,44 +156,52 @@
         document.querySelector("#users_template").content.firstElementChild;
       const elementosPorPagina = 3;
       let paginaActual = 1;
-      const baseDeDatos = [
-  {
-    "id": 1,
-    "user_name": "Usuario 1",
-    "user_desc": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-    "user_info": "Información adicional sobre Usuario 1"
-  },
-  {
-    "id": 2,
-    "user_name": "Usuario 2",
-    "user_desc": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-    "user_info": "Información adicional sobre Usuario 2"
-  },
-  {
-    "id": 3,
-    "user_name": "Usuario 3",
-    "user_desc": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-    "user_info": "Información adicional sobre Usuario 3"
-  },
-  {
-    "id": 4,
-    "user_name": "Usuario 4",
-    "user_desc": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-    "user_info": "Información adicional sobre Usuario 4"
-  },
-  {
-    "id": 5,
-    "user_name": "Usuario 5",
-    "user_desc": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-    "user_info": "Información adicional sobre Usuario 5"
-  },
-  {
-    "id": 6,
-    "user_name": "Usuario 6",
-    "user_desc": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum",
-    "user_info": "Información adicional sobre Usuario 6"
-  }
+      const baseDeDatos = [{
+  "users": [
+    {
+      "_id": "6737c701db931b1686d8a179",
+      "fullName": "carlo",
+      "email": "carlo@example.com",
+      "password": "$2b$10$X9exevR68H.zlfsmC8IYEOiVXhckJJkIK2S4.rmnu6ycX4uEa0d0a",
+      "role": "6737c6d6af4d219d4fd99fa4",
+      "__v": 0
+    },
+    {
+      "_id": "6737c701db931b1686d8a180",
+      "fullName": "maria",
+      "email": "maria@example.com",
+      "password": "$2b$10$yE7rJ5wK2hX0gds2WysA1WxaFf2mbHf8gk5ftZBw5M7lDxlFhVpdC",
+      "role": "6737c6d6af4d219d4fd99fa5",
+      "__v": 0
+    },
+    {
+      "_id": "6737c701db931b1686d8a181",
+      "fullName": "juan",
+      "email": "juan@example.com",
+      "password": "$2b$10$XzQlqGiIUvUB91HZaRLU9d8AGLlRYOo.e21vJzTgYYiFCj5JpJtNK",
+      "role": "6737c6d6af4d219d4fd99fa6",
+      "__v": 0
+    },
+    {
+      "_id": "6737c701db931b1686d8a182",
+      "fullName": "luisa",
+      "email": "luisa@example.com",
+      "password": "$2b$10$3E1UpaKiV.sLfz6zFScu5LHEFgHa0XjTysl7WVbFHXg0gw9IN6SCy",
+      "role": "6737c6d6af4d219d4fd99fa7",
+      "__v": 0
+    },
+    {
+      "_id": "6737c701db931b1686d8a183",
+      "fullName": "pedro",
+      "email": "pedro@example.com",
+      "password": "$2b$10$Fw0FwLMJZXykrqGe91pXsSoV9sY2TLgIXMt7VXN9XPTG2bmc/qbxe",
+      "role": "6737c6d6af4d219d4fd99fa8",
+      "__v": 0
+    }
+  ]
+}
 ];
+;
       function nextPage() {
         paginaActual++;
         render();
@@ -205,10 +213,10 @@
       function obtainData(page = 1) {
         const inicio = (paginaActual - 1) * elementosPorPagina;
         const final = inicio + elementosPorPagina;
-        return baseDeDatos.slice(inicio, final);
+        return baseDeDatos[0].users.slice(inicio, final);
       }
       function obtenerPaginasTotales() {
-        return Math.ceil(baseDeDatos.length / elementosPorPagina);
+        return Math.ceil(baseDeDatos[0].users.length / elementosPorPagina);
       }
       function gestButton() {
         if (paginaActual === 1) {
@@ -230,9 +238,9 @@
         dataSlice.forEach(function (data) {
           const myEvent = plantillaEvent.cloneNode(true);
           const myTitle = myEvent.querySelector("#user_name");
-          myTitle.textContent = data.user_name;
+          myTitle.textContent = data.fullName;
           const myDesc = myEvent.querySelector("#user_desc");
-          myDesc.textContent = data.user_desc;
+          myDesc.textContent = data.email;
           eventListDOM.appendChild(myEvent);
         });
       }
