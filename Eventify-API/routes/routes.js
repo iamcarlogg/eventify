@@ -26,6 +26,7 @@ function createRoutes() {
     if (req.url.startsWith('/register')) {
       return await authRoutes(req, res);
     }
+    
 
     if (req.url.startsWith('/roles')) {
       return await roleRoutes(req, res);

@@ -41,7 +41,7 @@
                 <h2 class="text-white font-light">New to Eventify? <a href="/src/register/register.html" class="font-bold underline">Register</a></h2>
 
                 <!-- Login Form -->
-                <form action="" class="w-full flex flex-col gap-4">
+                <form id="login-form" action="" class="w-full flex flex-col gap-4">
                     <div>
                         <label for="username" class="block text-white mb-1">Username</label>
                         <input class="w-full rounded-sm h-10 p-3" type="text" id="username" placeholder="Username">
@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-
+    <script src="login.js"></script>
     <script>
         document.getElementById('menu-button').addEventListener('click', function() {
             var menu = document.getElementById('menu');

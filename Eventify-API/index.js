@@ -7,7 +7,22 @@ const createRoutes = require('./routes/routes'); // Asegúrate de que apunte a l
 connectDB();
 
 // Crear el servidor HTTP
-const server = http.createServer(createRoutes());
+const server = http.createServer((req, res) => {
+  // Configurar los encabezados CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  // Manejar solicitudes OPTIONS
+  if (req.method === 'OPTIONS') {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+
+  // Llamar a las rutas
+  createRoutes()(req, res);
+});
 
 // Definir el puerto
 const PORT = process.env.PORT || 3000;

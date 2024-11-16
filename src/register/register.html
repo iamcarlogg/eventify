@@ -34,7 +34,7 @@
 
             <!-- Form -->
             <div class="bg-primary rounded-b-xl p-6 flex flex-col">
-                <form action="" class="space-y-4">
+                <form id="register_form" action="" class="space-y-4">
                     <div>
                         <label for="fname" class="block text-white mb-1">Full Name</label>
                         <input class="w-full rounded-sm h-10 p-3" type="text" id="fname" placeholder="John Doe">
@@ -51,20 +51,12 @@
                         <label for="confirm-password" class="block text-white mb-1">Confirm Password</label>
                         <input class="w-full rounded-sm h-10 p-3" type="password" id="confirm-password" placeholder="Confirm password">
                     </div>
-                    <button class="w-full bg-buttons rounded-xl py-2 font-bold text-white hover:scale-105  transition-transform">REGISTER</button>
+                    <button type="submit" class="w-full bg-buttons rounded-xl py-2 font-bold text-white hover:scale-105  transition-transform">REGISTER</button>
                 </form>
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById('menu-button').addEventListener('click', function() {
-            var menu = document.getElementById('menu');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
-            }
-        });
-    </script>
+    <script src="/src/dashboard/handlemenu.js"></script>
+    <script src="./register.js"></script>
 </body>
 </html>
