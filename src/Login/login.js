@@ -8,16 +8,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const email = document.querySelector("#username").value;
         const password = document.querySelector("#password").value;
-        function setCookie(name, value, days)
-        {
+        function setCookie(name, value, days, secure = false, httpOnly = false, sameSite = 'Lax') {
             let expires = "";
             if (days) {
                 const date = new Date();
                 date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
                 expires = "; expires=" + date.toUTCString();
             }
-            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-        };
+            let cookie = `${name}=${value || ""}${expires}; path=/; SameSite=${sameSite}`;
+            if (secure) {
+                cookie += "; Secure";
+            }
+            if (httpOnly) {
+                cookie += "; HttpOnly";
+            }
+            document.cookie = cookie;
+        }
 
         try {
             const response = await fetch("http://localhost:3000/login", {
@@ -32,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 // Guardar el token en el almacenamiento local o en una cookie
-                setCookie("token", data.token, 1);
+                setCookie("token", data.token, 1, httpOnly = true);
                 localStorage.setItem("token", data.token);
                 
                 
